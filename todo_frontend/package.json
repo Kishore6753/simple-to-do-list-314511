@@ -11,6 +11,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:watch": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -29,6 +30,9 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "cross-env": "^7.0.3"
   }
 }
