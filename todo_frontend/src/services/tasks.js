@@ -94,11 +94,24 @@ async function backendRequest(path, options = {}) {
   // Some endpoints may return 204
   if (resp.status === 204) return null;
 
-  const contentType = resp.headers.get("content-type") || "";
+  /**
+   * Be tolerant of missing/incorrect content-type headers.
+   * Some mocks/backends return JSON without setting content-type consistently.
+   *
+   * Strategy:
+   * 1) If header indicates JSON -> use resp.json()
+   * 2) Otherwise try resp.json() anyway; if it fails, fall back to resp.text()
+   */
+  const contentType = resp.headers?.get?.("content-type") || "";
   if (contentType.includes("application/json")) {
     return resp.json();
   }
-  return resp.text();
+
+  try {
+    return await resp.json();
+  } catch {
+    return resp.text();
+  }
 }
 
 async function checkBackendReachable() {

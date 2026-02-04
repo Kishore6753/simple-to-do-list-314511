@@ -207,7 +207,7 @@ function App() {
             />
           </section>
 
-          <section className="card listCard" aria-label="Task list">
+          <section className="card listCard">
             <div className="listHeader">
               <h2 className="sectionTitle">Your tasks</h2>
               <div className="listMeta">
